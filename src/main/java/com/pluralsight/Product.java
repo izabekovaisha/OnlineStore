@@ -2,7 +2,7 @@ package com.pluralsight;
 
 public class Product {
 
-    // Attributes
+    // Attributes of the product
     private String id;
     private String name;
     private double price;
@@ -14,7 +14,7 @@ public class Product {
         this.price = price;
     }
 
-    // Getters and setters
+    // Getters and setters for accessing and modifying the attributes
     public String getId() {
         return id;
     }
