@@ -1,12 +1,13 @@
 package com.pluralsight;
 
 public class Product {
+
     // Attributes
     private String id;
     private String name;
     private double price;
 
-    // Constructor
+    // Constructor for initializing a new Product object with the specified ID, name, and price
     public Product(String id, String name, double price) {
         this.id = id;
         this.name = name;

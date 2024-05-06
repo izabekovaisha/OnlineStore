@@ -37,6 +37,7 @@ public class Store {
                     break;
                 case 2:
                     displayCart(cart, scanner, totalAmount);
+                    checkOut(cart, totalAmount);
                     break;
                 case 3:
                     System.out.println("Thank you for shopping with us!");
@@ -48,7 +49,7 @@ public class Store {
         }
     }
 
-    // Method for reading the product information from the CSV file and populate the inventory ArrayList with Product objects
+    // Method for reading the product information from a CSV file and populate the inventory ArrayList with Product objects
     public static void loadInventory(String fileName, ArrayList<Product> inventory) {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
@@ -71,20 +72,13 @@ public class Store {
     }
 
 
-    // Method for displaying a list of products from the inventory
+    // Method for displaying a list of products from the inventory and allowing the user to add items to their cart
     public static void displayProducts(ArrayList<Product> inventory, ArrayList<Product> cart, Scanner scanner) {
-        // This method should display a list of products from the inventory,
-        // and prompt the user to add items to their cart. The method should
-        // prompt the user to enter the ID of the product they want to add to
-        // their cart. The method should
-        // add the selected product to the cart ArrayList.
-
         System.out.println("Products: ");
         for (Product product : inventory) {
             System.out.println(product.getId() + product.getName() + " - $" + product.getPrice());
         }
 
-        // Prompt user to add items to cart
         System.out.println("Enter the ID of the product you want to add to your cart (or type 'Back' to go back):");
         String input = scanner.nextLine();
 
@@ -99,13 +93,8 @@ public class Store {
         }
         }
 
-        // Method for displaying the items in the cart, along with the total cost of all items or remove items by entering the ID
+        // Method for displaying items in the cart, allowing removal, and calculating the total cost
     public static void displayCart(ArrayList<Product> cart, Scanner scanner, double totalAmount) {
-        // This method should display the items in the cart ArrayList, along
-        // with the total cost of all items in the cart. The method should
-        // prompt the user to remove items from their cart by entering the ID
-        // of the product they want to remove. The method should update the cart ArrayList and totalAmount
-        // variable accordingly.
         if (cart.isEmpty()) {
             System.out.println("Your cart is empty.");
         } else {
@@ -137,11 +126,8 @@ public class Store {
         }
         }
 
+    // Method for calculating the total cost of items in the cart, prompting the user to confirm purchase, and clearing the cart
     public static void checkOut(ArrayList<Product> cart, double totalAmount) {
-        // This method should calculate the total cost of all items in the cart,
-        // and display a summary of the purchase to the user. The method should
-        // prompt the user to confirm the purchase, and deduct the total cost
-        // from their account if they confirm.
         System.out.println("Total amount to pay: $" + totalAmount);
         System.out.println("Confirm purchase? (yes/no)");
         Scanner scanner = new Scanner(System.in);
@@ -154,11 +140,8 @@ public class Store {
         }
     }
 
+    // Method for searching for a product by ID in the given ArrayList
     public static Product findProductById(String id, ArrayList<Product> inventory) {
-        // This method should search the inventory ArrayList for a product with
-        // the specified ID, and return the corresponding Product object. If
-        // no product with the specified ID is found, the method should return
-        // null.
         for (Product product : inventory) {
             if (product.getId().equals(id)) {
                 return product;
