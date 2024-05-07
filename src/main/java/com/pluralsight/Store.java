@@ -2,6 +2,7 @@ package com.pluralsight;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -47,6 +48,7 @@ public class Store {
                     break;
             }
         }
+        scanner.close();
     }
 
     // Method for reading the product information from a CSV file and populate the inventory ArrayList with Product objects
@@ -62,7 +64,7 @@ public class Store {
                     String id = parts[0].trim();
                     String name = parts[1].trim();
                     double price = Double.parseDouble(parts[2]);
-                    inventory.add(new Product(id, name, price));
+                    inventory.add(new Product(id, name, price, 0));
                 }
             }
             bufferedReader.close();
@@ -83,9 +85,23 @@ public class Store {
         String input = scanner.nextLine();
 
         if (!input.equals("Back")) {
-            Product product = findProductById(input, inventory);
+            Product product;
+            product = findProductById(input, inventory);
             if (product != null) {
-                cart.add(product);
+                boolean found = false;
+                // Check if the product is already in the cart
+                for (Product cartProduct : cart) {
+                    if (cartProduct.getId().equals(product.getId())) {
+                        // If the product is already in the cart, increment its quantity
+                        cartProduct.incrementQuantity();
+                        found = true;
+                        break;
+                    }
+                }
+                // If the product is not already in the cart, add it with initial quantity 1
+                if (!found) {
+                    cart.add(new Product(product.getId(), product.getName(), product.getPrice(), 1));
+                }
                 System.out.println(product.getName() + " has been added to your cart.");
             } else {
                 System.out.println("Product not found!");
@@ -98,18 +114,13 @@ public class Store {
         if (cart.isEmpty()) {
             System.out.println("Your cart is empty.");
         } else {
-            System.out.println("Your Cart:");
+            System.out.println("Your Cart: ");
             for (Product product : cart) {
-                System.out.println(product.getId() + ": " + product.getName() + " - $" + product.getPrice());
+                System.out.println(product.getId() + ": " + product.getName() + " - $" + product.getPrice() + "x" + product.getQuantity());
+                totalAmount += product.getPrice() * product.getQuantity(); // Update totalAmount with each product's price multiplied by its quantity
             }
-        }
+            }
 
-
-        // Calculate total amount
-        totalAmount = 0.0;
-        for (Product product : cart) {
-            totalAmount += product.getPrice();
-        }
         System.out.println("Total: $" + totalAmount);
 
         // Prompt user to remove items from cart
@@ -128,16 +139,44 @@ public class Store {
 
     // Method for calculating the total cost of items in the cart, prompting the user to confirm purchase, and clearing the cart
     public static void checkOut(ArrayList<Product> cart, double totalAmount) {
+        Scanner scanner = new Scanner(System.in);
+
         System.out.println("Total amount to pay: $" + totalAmount);
         System.out.println("Confirm purchase? (yes/no)");
-        Scanner scanner = new Scanner(System.in);
+
         String input = scanner.nextLine();
         if (input.equalsIgnoreCase("yes")) {
+            // Display sales receipt
+            displayReceipt(cart);
+            // Clear the cart
+            cart.clear();
             System.out.println("Thank you for your purchase!");
             cart.clear();
         } else {
             System.out.println("Purchase canceled.");
         }
+    }
+
+    // Method for generating and displaying the sales receipt
+    public static void displayReceipt(ArrayList<Product> cart) {
+        double totalAmount = 0.0;
+
+        // Print header
+        System.out.println("Sales Receipt:");
+        System.out.println("Order Date: " + LocalDate.now());
+        System.out.println("All Line Items:");
+
+        // Print each item in the cart with its quantity and subtotal
+        for (Product product : cart) {
+            double subtotal = product.getPrice() * product.getQuantity();
+            System.out.println(product.getName() + " - $" + product.getPrice() + " x " + product.getQuantity() + " = $" + subtotal);
+            totalAmount += subtotal;
+        }
+
+        // Print total sales amount owed, amount paid (assuming cash), and change given
+        System.out.println("Sales Total: $" + totalAmount);
+        System.out.println("Amount Paid: $" + totalAmount); // Assuming payment in cash
+        System.out.println("Change Given: $0.0"); // Assuming payment in cash, no change given in this example
     }
 
     // Method for searching for a product by ID in the given ArrayList
