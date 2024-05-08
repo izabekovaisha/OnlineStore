@@ -112,28 +112,53 @@ public class Store {
 
     // Method for displaying items in the cart, allowing removal, and calculating the total cost
     public static void displayCart(ArrayList<Product> cart, Scanner scanner, double totalAmount) {
-        if (cart.isEmpty()) {
-            System.out.println("Your cart is empty.");
-        } else {
-            System.out.println("Your Cart: ");
-            for (Product product : cart) {
-                System.out.println(product.getId() + ": " + product.getName() + " - $" + product.getPrice() + "x" + product.getQuantity());
-                totalAmount += product.getPrice() * product.getQuantity(); // Update totalAmount with each product's price multiplied by its quantity
-            }
-        }
-
-        System.out.println("Total: $" + totalAmount);
-
-        // Prompt user to remove items from cart
-        System.out.println("Enter the ID of the product you want to remove from your cart (or type 'Back' to go back):");
-        String input = scanner.nextLine();
-        if (!input.equalsIgnoreCase("Back")) {
-            Product product = findProductById(input, cart);
-            if (product != null) {
-                cart.remove(product);
-                System.out.println(product.getName() + " has been removed from your cart.");
+        while (true) {
+            if (cart.isEmpty()) {
+                System.out.println("Your cart is empty.");
             } else {
-                System.out.println("Product not found in your cart!");
+                System.out.println("Your Cart: ");
+                for (Product product : cart) {
+                    System.out.println(product.getId() + ": " + product.getName() + " - $" + product.getPrice() + "x" + product.getQuantity());
+                    totalAmount += product.getPrice() * product.getQuantity(); // Update totalAmount with each product's price multiplied by its quantity
+                }
+            }
+
+            System.out.println("Total: $" + totalAmount);
+            System.out.println("1. Check Out");
+            System.out.println("2. Remove Product from the cart");
+            System.out.println("3. Clear Cart");
+            System.out.println("4. Return to the home screen");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            switch (choice) {
+                case 1:
+                    checkOut(cart, totalAmount);
+                    return; // Return to the main menu after checking out
+                case 2:
+                    System.out.println("Enter the ID of the product you want to remove from your cart (or type 'Back' to go back):");
+                    String input = scanner.nextLine();
+                    if (!input.equalsIgnoreCase("Back")) {
+                        Product product = findProductById(input, cart);
+                        if (product != null) {
+                            cart.remove(product);
+                            System.out.println(product.getName() + " has been removed from your cart.");
+                        } else {
+                            System.out.println("Product not found in your cart!");
+                        }
+                    }
+                    break;
+                case 3:
+                    cart.clear();
+                    System.out.println("Your cart has been cleared.");
+                    break;
+                case 4:
+                    System.out.println("Returning to the home screen...");
+                    return; // Return to the main menu
+                default:
+                    System.out.println("Invalid choice!");
+                    break;
             }
         }
     }
