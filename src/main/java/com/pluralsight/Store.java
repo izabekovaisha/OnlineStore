@@ -1,8 +1,9 @@
 package com.pluralsight;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+
+import java.io.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -107,9 +108,9 @@ public class Store {
                 System.out.println("Product not found!");
             }
         }
-        }
+    }
 
-        // Method for displaying items in the cart, allowing removal, and calculating the total cost
+    // Method for displaying items in the cart, allowing removal, and calculating the total cost
     public static void displayCart(ArrayList<Product> cart, Scanner scanner, double totalAmount) {
         if (cart.isEmpty()) {
             System.out.println("Your cart is empty.");
@@ -119,7 +120,7 @@ public class Store {
                 System.out.println(product.getId() + ": " + product.getName() + " - $" + product.getPrice() + "x" + product.getQuantity());
                 totalAmount += product.getPrice() * product.getQuantity(); // Update totalAmount with each product's price multiplied by its quantity
             }
-            }
+        }
 
         System.out.println("Total: $" + totalAmount);
 
@@ -135,48 +136,82 @@ public class Store {
                 System.out.println("Product not found in your cart!");
             }
         }
-        }
+    }
 
     // Method for calculating the total cost of items in the cart, prompting the user to confirm purchase, and clearing the cart
     public static void checkOut(ArrayList<Product> cart, double totalAmount) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Total amount to pay: $" + totalAmount);
-        System.out.println("Confirm purchase? (yes/no)");
+        System.out.println("Enter the amount paid in cash:");
+        double amountPaid = scanner.nextDouble();
 
-        String input = scanner.nextLine();
-        if (input.equalsIgnoreCase("yes")) {
-            // Display sales receipt
-            displayReceipt(cart);
-            // Clear the cart
-            cart.clear();
-            System.out.println("Thank you for your purchase!");
-            cart.clear();
-        } else {
-            System.out.println("Purchase canceled.");
+        if (amountPaid < totalAmount) {
+            System.out.println("Payment not enough. Payment canceled.");
+            return;
         }
+
+        double change = amountPaid - totalAmount;
+        System.out.println("Change given: $" + change);
+
+        // Display sales receipt and save to file
+        String receiptInfo = generateReceiptInfo(cart, totalAmount, change);
+        System.out.println(receiptInfo); // Display receipt on screen
+        saveReceiptToFile(receiptInfo); // Save receipt to file
+
+
+        cart.clear();
     }
 
-    // Method for generating and displaying the sales receipt
-    public static void displayReceipt(ArrayList<Product> cart) {
-        double totalAmount = 0.0;
+    // Method for generating the sales receipt information as a string
+    public static String generateReceiptInfo(ArrayList<Product> cart, double totalAmount, double change) {
+        StringBuilder receipt = new StringBuilder();
 
-        // Print header
-        System.out.println("Sales Receipt:");
-        System.out.println("Order Date: " + LocalDate.now());
-        System.out.println("All Line Items:");
+        // Format current date and time
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmm");
+        String timestamp = now.format(formatter);
 
-        // Print each item in the cart with its quantity and subtotal
+        // Generate filename with timestamp
+        String filename = timestamp + ".txt";
+
+        // Append receipt information
+        receipt.append("Sales Receipt:\n");
+        receipt.append("Order Date: ").append(now).append("\n");
+        receipt.append("All Line Items:\n");
         for (Product product : cart) {
             double subtotal = product.getPrice() * product.getQuantity();
-            System.out.println(product.getName() + " - $" + product.getPrice() + " x " + product.getQuantity() + " = $" + subtotal);
-            totalAmount += subtotal;
+            receipt.append(product.getName()).append(" - $").append(product.getPrice()).append(" x ").append(product.getQuantity()).append(" = $").append(subtotal).append("\n");
         }
+        receipt.append("Sales Total: $").append(totalAmount).append("\n");
+        receipt.append("Amount Paid: $").append(totalAmount + change).append("\n"); // Calculate amount paid by adding change to total amount
+        receipt.append("Change Given: $").append(change).append("\n");
 
-        // Print total sales amount owed, amount paid (assuming cash), and change given
-        System.out.println("Sales Total: $" + totalAmount);
-        System.out.println("Amount Paid: $" + totalAmount); // Assuming payment in cash
-        System.out.println("Change Given: $0.0"); // Assuming payment in cash, no change given in this example
+        return receipt.toString();
+    }
+
+    // Method for saving the sales receipt to a file
+    public static void saveReceiptToFile(String receiptInfo) {
+        try {
+            // Format current date and time for filename
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmm");
+            String timestamp = now.format(formatter);
+
+            // Generate filename with timestamp
+            String filename = "Receipts/" + timestamp + ".txt";
+
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filename));
+
+            bufferedWriter.write(receiptInfo);
+            bufferedWriter.close();
+
+
+            // Print message to console
+            System.out.println("Sales receipt saved to file: " + filename);
+        } catch (IOException e) {
+            System.err.println("Error saving receipt to file: " + e.getMessage());
+        }
     }
 
     // Method for searching for a product by ID in the given ArrayList
@@ -187,8 +222,8 @@ public class Store {
             }
         }
         return null;
-        }
     }
+}
 
 
 
