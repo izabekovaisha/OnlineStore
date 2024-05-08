@@ -38,7 +38,6 @@ public class Store {
                     break;
                 case 2:
                     displayCart(cart, scanner, totalAmount);
-                    checkOut(cart, totalAmount);
                     break;
                 case 3:
                     System.out.println("Thank you for shopping with us!");
@@ -78,7 +77,7 @@ public class Store {
     public static void displayProducts(ArrayList<Product> inventory, ArrayList<Product> cart, Scanner scanner) {
         System.out.println("Products: ");
         for (Product product : inventory) {
-            System.out.println(product.getId() + product.getName() + " - $" + product.getPrice());
+            System.out.println(product.getId() + "|" + product.getName() + "|$" + product.getPrice());
         }
 
         System.out.println("Enter the ID of the product you want to add to your cart (or type 'Back' to go back):");
@@ -169,6 +168,7 @@ public class Store {
         System.out.println("Total amount to pay: $" + totalAmount);
         System.out.println("Enter the amount paid in cash:");
         double amountPaid = scanner.nextDouble();
+        scanner.nextLine();
 
         if (amountPaid < totalAmount) {
             System.out.println("Payment not enough. Payment canceled.");
@@ -180,8 +180,8 @@ public class Store {
 
         // Display sales receipt and save to file
         String receiptInfo = generateReceiptInfo(cart, totalAmount, change);
-        System.out.println(receiptInfo); // Display receipt on screen
-        saveReceiptToFile(receiptInfo); // Save receipt to file
+        System.out.println(receiptInfo);
+        saveReceiptToFile(receiptInfo);
 
 
         cart.clear();
@@ -191,15 +191,12 @@ public class Store {
     public static String generateReceiptInfo(ArrayList<Product> cart, double totalAmount, double change) {
         StringBuilder receipt = new StringBuilder();
 
-        // Format current date and time
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmm");
         String timestamp = now.format(formatter);
 
-        // Generate filename with timestamp
         String filename = timestamp + ".txt";
 
-        // Append receipt information
         receipt.append("Sales Receipt:\n");
         receipt.append("Order Date: ").append(now).append("\n");
         receipt.append("All Line Items:\n");
@@ -217,15 +214,12 @@ public class Store {
     // Method for saving the sales receipt to a file
     public static void saveReceiptToFile(String receiptInfo) {
         try {
-            // Create Receipts folder if it doesn't exist
             File receiptsFolder = new File("Receipts");
 
-            // Format current date and time for filename
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmm");
             String timestamp = now.format(formatter);
 
-            // Generate filename with timestamp
             String filename = "Receipts/" + timestamp + ".txt";
 
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filename));
@@ -234,7 +228,6 @@ public class Store {
             bufferedWriter.close();
 
 
-            // Print message to console
             System.out.println("Sales receipt saved to file: " + filename);
         } catch (IOException e) {
             System.err.println("Error saving receipt to file: " + e.getMessage());

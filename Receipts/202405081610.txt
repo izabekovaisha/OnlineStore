@@ -1,0 +1,7 @@
+Sales Receipt:
+Order Date: 2024-05-08T16:10:16.548220
+All Line Items:
+Wireless Charger iPhone - $12.99 x 1 = $12.99
+Sales Total: $12.99
+Amount Paid: $12.99
+Change Given: $0.0
