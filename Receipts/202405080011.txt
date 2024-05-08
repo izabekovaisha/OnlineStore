@@ -1,0 +1,6 @@
+Sales Receipt:
+Order Date: 2024-05-08T00:11:00.160014300
+All Line Items:
+Sales Total: $0.0
+Amount Paid: $0.0
+Change Given: $0.0

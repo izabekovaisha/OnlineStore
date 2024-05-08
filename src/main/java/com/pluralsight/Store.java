@@ -1,7 +1,6 @@
 package com.pluralsight;
 
 import java.io.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -218,6 +217,9 @@ public class Store {
     // Method for saving the sales receipt to a file
     public static void saveReceiptToFile(String receiptInfo) {
         try {
+            // Create Receipts folder if it doesn't exist
+            File receiptsFolder = new File("Receipts");
+
             // Format current date and time for filename
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmm");
