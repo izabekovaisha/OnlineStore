@@ -1,6 +1,6 @@
-# Financial Tracker Application
+# Online Store Application
 
-## Financial Tracker is a Java application designed to help users manage their finances by tracking deposits, payments, and generating reports.
+## Online Store is a Java application crafted to streamline the shopping experience for users. It provides features for browsing products, adding them to a cart, and completing purchases.
 
 ### Prerequisites
 
@@ -32,20 +32,13 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 Potential future enhancements or functionalities:
 
-- Create a system for categorizing transactions and allow users to assign categories to their transactions
-- Schedule reminders and notifications for users based on upcoming events or financial milestones
+- Implement user accounts and authentication to enable personalized experiences and order history 
+- Implement advanced search features such as filtering by price range, category, or brand to help users find products more efficiently
+- Support multiple languages and currencies to cater to a global audience and enhance accessibility
 
 ## Resources
 
-- [Workbook 2 - Strings Loops and Arrays](https://app.schoology.com/attachment/2926311503/source/ad7bfe6ddf41e4c168a52c81c3e733e9.pdf)
-- [Workbook 3 - 1 - Mastering Java Fundamentals](https://app.schoology.com/attachment/2926311516/source/457b5c4cb1d468a04a4575fda091bed0.pdf)
+- [Java Documentation](https://docs.oracle.com/javase/8/docs/api/)
 - [Stack Overflow](https://www.bing.com/ck/a?!&&p=e48468e05c424ae9JmltdHM9MTcxNDUyMTYwMCZpZ3VpZD0wZWEzYzk2MC01NjI2LTZmNjEtM2U0Ni1kZDI2NTc3NDZlODgmaW5zaWQ9NTIxOA&ptn=3&ver=2&hsh=3&fclid=0ea3c960-5626-6f61-3e46-dd2657746e88&psq=stack+overflow&u=a1aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS8&ntb=1)
-
-## User Stories
-
-Click [**here**](https://github.com/users/izabekovaisha/projects/2/views/1) to view the guiding user stories.
-
-## Thanks
-
-- Thank you to instructor Raymond for continuous support and guidance.
-
+- [React Tutorial: Build an e-commerce site from scratch](https://www.youtube.com/watch?v=wPQ1-33teR4)
+- [GitHub Guides](https://guides.github.com/)

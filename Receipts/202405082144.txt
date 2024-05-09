@@ -1,0 +1,7 @@
+Sales Receipt:
+Order Date: 2024-05-08T21:44:50.574535
+All Line Items:
+XLR Podcast Cardiod Mic - $44.99 x 1 = $44.99
+Sales Total: $44.99
+Amount Paid: $100.0
+Change Given: $55.01
