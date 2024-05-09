@@ -1,0 +1,7 @@
+Sales Receipt:
+Order Date: 2024-05-08T21:04:10.592673200
+All Line Items:
+Desktop PC Computer Intel Core i5 - $139.0 x 1 = $139.0
+Sales Total: $139.0
+Amount Paid: $150.0
+Change Given: $11.0

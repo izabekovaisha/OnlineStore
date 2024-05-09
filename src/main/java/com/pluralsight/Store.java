@@ -9,19 +9,15 @@ import java.util.Scanner;
 public class Store {
 
     public static void main(String[] args) {
-        // Initialize variables
         ArrayList<Product> inventory = new ArrayList<>();
         ArrayList<Product> cart = new ArrayList<>();
         double totalAmount = 0.0;
 
-        // Load inventory from CSV file
         loadInventory("products.csv", inventory);
 
-        // Create scanner to read user input
         Scanner scanner = new Scanner(System.in);
         int choice = -1;
 
-        // Display menu and get user choice until they choose to exit
         while (choice != 3) {
             System.out.println("Welcome to the Online Store!");
             System.out.println("1. Show Products");
@@ -31,7 +27,6 @@ public class Store {
             choice = scanner.nextInt();
             scanner.nextLine();
 
-            // Call the appropriate method based on user choice
             switch (choice) {
                 case 1:
                     displayProducts(inventory, cart, scanner);
@@ -88,16 +83,13 @@ public class Store {
             product = findProductById(input, inventory);
             if (product != null) {
                 boolean found = false;
-                // Check if the product is already in the cart
                 for (Product cartProduct : cart) {
                     if (cartProduct.getId().equals(product.getId())) {
-                        // If the product is already in the cart, increment its quantity
                         cartProduct.incrementQuantity();
                         found = true;
                         break;
                     }
                 }
-                // If the product is not already in the cart, add it with initial quantity 1
                 if (!found) {
                     cart.add(new Product(product.getId(), product.getName(), product.getPrice(), 1));
                 }
@@ -117,7 +109,7 @@ public class Store {
                 System.out.println("Your Cart: ");
                 for (Product product : cart) {
                     System.out.println(product.getId() + ": " + product.getName() + " - $" + product.getPrice() + "x" + product.getQuantity());
-                    totalAmount += product.getPrice() * product.getQuantity(); // Update totalAmount with each product's price multiplied by its quantity
+                    totalAmount += product.getPrice() * product.getQuantity();
                 }
             }
 
@@ -128,12 +120,12 @@ public class Store {
             System.out.println("4. Return to the home screen");
 
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
                     checkOut(cart, totalAmount);
-                    return; // Return to the main menu after checking out
+                    return;
                 case 2:
                     System.out.println("Enter the ID of the product you want to remove from your cart (or type 'Back' to go back):");
                     String input = scanner.nextLine();
@@ -142,6 +134,7 @@ public class Store {
                         if (product != null) {
                             cart.remove(product);
                             System.out.println(product.getName() + " has been removed from your cart.");
+                            totalAmount = 0.0;
                         } else {
                             System.out.println("Product not found in your cart!");
                         }
@@ -153,7 +146,7 @@ public class Store {
                     break;
                 case 4:
                     System.out.println("Returning to the home screen...");
-                    return; // Return to the main menu
+                    return;
                 default:
                     System.out.println("Invalid choice!");
                     break;
@@ -176,7 +169,7 @@ public class Store {
         }
 
         double change = amountPaid - totalAmount;
-        System.out.println("Change given: $" + change);
+        System.out.println("Change given: " + change);
 
         // Display sales receipt and save to file
         String receiptInfo = generateReceiptInfo(cart, totalAmount, change);
@@ -205,7 +198,7 @@ public class Store {
             receipt.append(product.getName()).append(" - $").append(product.getPrice()).append(" x ").append(product.getQuantity()).append(" = $").append(subtotal).append("\n");
         }
         receipt.append("Sales Total: $").append(totalAmount).append("\n");
-        receipt.append("Amount Paid: $").append(totalAmount + change).append("\n"); // Calculate amount paid by adding change to total amount
+        receipt.append("Amount Paid: $").append(totalAmount + change).append("\n");
         receipt.append("Change Given: $").append(change).append("\n");
 
         return receipt.toString();

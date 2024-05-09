@@ -1,0 +1,7 @@
+Sales Receipt:
+Order Date: 2024-05-08T20:40:24.842888600
+All Line Items:
+Retro Handheld Arcade - $24.45 x 1 = $24.45
+Sales Total: $24.45
+Amount Paid: $35.0
+Change Given: $10.55

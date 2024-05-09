@@ -1,0 +1,7 @@
+Sales Receipt:
+Order Date: 2024-05-08T21:02:38.960036400
+All Line Items:
+JBL Bluetooth Speaker - $89.95 x 1 = $89.95
+Sales Total: $89.95
+Amount Paid: $100.0
+Change Given: $10.049999999999997

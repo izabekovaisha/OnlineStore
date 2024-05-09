@@ -1,0 +1,7 @@
+Sales Receipt:
+Order Date: 2024-05-08T20:39:56.225571900
+All Line Items:
+Telestrations Board Game - $17.99 x 1 = $17.99
+Sales Total: $17.99
+Amount Paid: $30.0
+Change Given: $12.010000000000002

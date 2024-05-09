@@ -1,32 +1,17 @@
-# Project Title
+# Financial Tracker Application
 
-## Description of the Project
-
-Briefly describe what this Java console application does. Mention its purpose and who the intended users are. Explain the main functionality and what problems it aims to solve.
-
-![Class Diagram](path/to/your/class_diagram.png)
-
-## User Stories
-
-List the user stories that guided the development of your application. Format these stories as: "As a [type of user], I want [some goal] so that [some reason]."
-
-- As a user, I want to be able to input my data, so that the application can process it accordingly.
-- As a user, I want to receive immediate feedback, so I can understand what to do next.
-
-## Setup
-
-Instructions on how to set up and run the project using IntelliJ IDEA.
+## Financial Tracker is a Java application designed to help users manage their finances by tracking deposits, payments, and generating reports.
 
 ### Prerequisites
 
-- IntelliJ IDEA: Ensure you have IntelliJ IDEA installed, which you can download from [here](https://www.jetbrains.com/idea/download/).
-- Java SDK: Make sure Java SDK is installed and configured in IntelliJ.
+- **IntelliJ IDEA**: Ensure you have IntelliJ IDEA installed, which you can download from [**here**](https://www.jetbrains.com/idea/download/).
+- **Java SDK**: Make sure Java SDK is installed and configured in IntelliJ.
 
 ### Running the Application in IntelliJ
 
 Follow these steps to get your application running within IntelliJ IDEA:
 
-1. Open IntelliJ IDEA.
+1. Open **IntelliJ IDEA**.
 2. Select "Open" and navigate to the directory where you cloned or downloaded the project.
 3. After the project opens, wait for IntelliJ to index the files and set up the project.
 4. Find the main class with the `public static void main(String[] args)` method.
@@ -34,38 +19,33 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Technologies Used
 
-- Java: Mention the version you are using.
-- Any additional libraries or frameworks used in the project.
+- [JDK: Amazon Corretto 17.0.10](https://github.com/corretto/corretto-17/releases)
+- [IntelliJ IDEA Community Edition 2024.1](https://www.bing.com/ck/a?!&&p=e0b1a0a46e9c6b8aJmltdHM9MTcxNDUyMTYwMCZpZ3VpZD0wZWEzYzk2MC01NjI2LTZmNjEtM2U0Ni1kZDI2NTc3NDZlODgmaW5zaWQ9NTIyMw&ptn=3&ver=2&hsh=3&fclid=0ea3c960-5626-6f61-3e46-dd2657746e88&psq=intellij+idea&u=a1aHR0cHM6Ly93d3cuamV0YnJhaW5zLmNvbS9pZGVhLw&ntb=1)
+- [GitHub](https://github.com/izabekovaisha/FinancialTracker)
+- [Git Bash](https://gitforwindows.org)
 
 ## Demo
 
-Include screenshots or GIFs that show your application in action. Use tools like [Giphy Capture](https://giphy.com/apps/giphycapture) to record a GIF of your application.
-
-![Application Screenshot](path/to/your/screenshot.png)
+![ezgif-5-046d6d48ac](https://github.com/izabekovaisha/FinancialTracker/assets/166551874/6663b501-2303-4d58-a7e3-aec19f249c7b)
 
 ## Future Work
 
-Outline potential future enhancements or functionalities you might consider adding:
+Potential future enhancements or functionalities:
 
-- Additional feature to be developed.
-- Improvement of current functionalities.
+- Create a system for categorizing transactions and allow users to assign categories to their transactions
+- Schedule reminders and notifications for users based on upcoming events or financial milestones
 
 ## Resources
 
-List resources such as tutorials, articles, or documentation that helped you during the project.
+- [Workbook 2 - Strings Loops and Arrays](https://app.schoology.com/attachment/2926311503/source/ad7bfe6ddf41e4c168a52c81c3e733e9.pdf)
+- [Workbook 3 - 1 - Mastering Java Fundamentals](https://app.schoology.com/attachment/2926311516/source/457b5c4cb1d468a04a4575fda091bed0.pdf)
+- [Stack Overflow](https://www.bing.com/ck/a?!&&p=e48468e05c424ae9JmltdHM9MTcxNDUyMTYwMCZpZ3VpZD0wZWEzYzk2MC01NjI2LTZmNjEtM2U0Ni1kZDI2NTc3NDZlODgmaW5zaWQ9NTIxOA&ptn=3&ver=2&hsh=3&fclid=0ea3c960-5626-6f61-3e46-dd2657746e88&psq=stack+overflow&u=a1aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS8&ntb=1)
 
-- [Java Programming Tutorial](https://www.example.com)
-- [Effective Java](https://www.example.com)
+## User Stories
 
-## Team Members
-
-- **Name 1** - Specific contributions or roles.
-- **Name 2** - Specific contributions or roles.
+Click [**here**](https://github.com/users/izabekovaisha/projects/2/views/1) to view the guiding user stories.
 
 ## Thanks
 
-Express gratitude towards those who provided help, guidance, or resources:
-
-- Thank you to [Mentor's Name] for continuous support and guidance.
-- A special thanks to all teammates for their dedication and teamwork.
+- Thank you to instructor Raymond for continuous support and guidance.
 
