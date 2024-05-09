@@ -26,7 +26,8 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Demo
 
-![ezgif-5-046d6d48ac](https://github.com/izabekovaisha/FinancialTracker/assets/166551874/6663b501-2303-4d58-a7e3-aec19f249c7b)
+![Recording2024-05-08211714-ezgif com-optimize](https://github.com/izabekovaisha/OnlineStore/assets/166551874/161e77f9-126e-4307-97b4-c498881af745)
+
 
 ## Future Work
 
