@@ -45,7 +45,7 @@ public class Store {
         scanner.close();
     }
 
-    // Method for reading the product information from a CSV file and populate the inventory ArrayList with Product objects
+
     public static void loadInventory(String fileName, ArrayList<Product> inventory) {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
@@ -68,7 +68,6 @@ public class Store {
     }
 
 
-    // Method for displaying a list of products from the inventory and allowing the user to add items to their cart
     public static void displayProducts(ArrayList<Product> inventory, ArrayList<Product> cart, Scanner scanner) {
         System.out.println("Products: ");
         for (Product product : inventory) {
@@ -100,7 +99,7 @@ public class Store {
         }
     }
 
-    // Method for displaying items in the cart, allowing removal, and calculating the total cost
+
     public static void displayCart(ArrayList<Product> cart, Scanner scanner, double totalAmount) {
         while (true) {
             if (cart.isEmpty()) {
@@ -154,7 +153,7 @@ public class Store {
         }
     }
 
-    // Method for calculating the total cost of items in the cart, prompting the user to confirm purchase, and clearing the cart
+
     public static void checkOut(ArrayList<Product> cart, double totalAmount) {
         Scanner scanner = new Scanner(System.in);
 
@@ -180,7 +179,7 @@ public class Store {
         cart.clear();
     }
 
-    // Method for generating the sales receipt information as a string
+
     public static String generateReceiptInfo(ArrayList<Product> cart, double totalAmount, double change) {
         StringBuilder receipt = new StringBuilder();
 
@@ -204,7 +203,7 @@ public class Store {
         return receipt.toString();
     }
 
-    // Method for saving the sales receipt to a file
+
     public static void saveReceiptToFile(String receiptInfo) {
         try {
             File receiptsFolder = new File("Receipts");
@@ -227,7 +226,7 @@ public class Store {
         }
     }
 
-    // Method for searching for a product by ID in the given ArrayList
+
     public static Product findProductById(String id, ArrayList<Product> inventory) {
         for (Product product : inventory) {
             if (product.getId().equals(id)) {

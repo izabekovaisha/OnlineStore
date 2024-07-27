@@ -1,14 +1,11 @@
 package com.pluralsight;
 
 public class Product {
-
-    // Attributes of the product
     private String id;
     private String name;
     private double price;
     private int quantity;
 
-    // Constructor for initializing a new Product object
     public Product(String id, String name, double price, int quantity) {
         this.id = id;
         this.name = name;
@@ -16,7 +13,6 @@ public class Product {
         this.quantity = quantity;
     }
 
-    // Getters and setters for accessing and modifying the attributes
     public String getId() {
         return id;
     }
@@ -49,7 +45,6 @@ public class Product {
         this.quantity = quantity;
     }
 
-    // Method to increment the quantity of the product
     public void incrementQuantity() {
         this.quantity++;
     }
